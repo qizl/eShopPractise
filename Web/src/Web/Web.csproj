@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-EnjoyCodes.eShopOnWeb.Web-8ED2D332-CD1A-4493-A898-EBA852736797</UserSecretsId>
+    <AssemblyName>EnjoyCodes.eShopOnWeb.Web</AssemblyName>
+    <RootNamespace>EnjoyCodes.eShopOnWeb.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>

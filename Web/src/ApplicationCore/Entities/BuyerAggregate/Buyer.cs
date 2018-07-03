@@ -16,7 +16,7 @@ namespace EnjoyCodes.eShopOnWeb.ApplicationCore.Entities.BuyerAggregate
         public Buyer(string identity) : this()
         {
             Guard.Against.NullOrEmpty(identity, nameof(identity));
-            IdentityGuid = identity
+            IdentityGuid = identity;
         }
     }
 }

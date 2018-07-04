@@ -8,6 +8,7 @@ using EnjoyCodes.eShopOnWeb.Web.Models;
 
 namespace EnjoyCodes.eShopOnWeb.Web.Controllers
 {
+    //[Route("{[controller]/[action]}")]
     public class HomeController : Controller
     {
         public IActionResult Index()

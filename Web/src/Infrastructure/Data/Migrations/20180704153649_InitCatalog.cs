@@ -8,18 +8,6 @@ namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "catalog_brand_hilo",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "catalog_hilo",
-                incrementBy: 10);
-
-            migrationBuilder.CreateSequence(
-                name: "catalog_type_hilo",
-                incrementBy: 10);
-
             migrationBuilder.CreateTable(
                 name: "Baskets",
                 columns: table => new
@@ -37,7 +25,8 @@ namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data.Migrations
                 name: "CatalogBrand",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Brand = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -49,7 +38,8 @@ namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data.Migrations
                 name: "CatalogType",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Type = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -102,7 +92,8 @@ namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data.Migrations
                 name: "Catalog",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
@@ -194,15 +185,6 @@ namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_brand_hilo");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_hilo");
-
-            migrationBuilder.DropSequence(
-                name: "catalog_type_hilo");
         }
     }
 }

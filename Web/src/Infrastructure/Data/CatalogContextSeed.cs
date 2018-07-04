@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EnjoyCodes.eShopOnWeb.ApplicationCore.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data
@@ -15,7 +16,7 @@ namespace EnjoyCodes.eShopOnWeb.Infrastructure.Data
             try
             {
                 // TODO: Only run this if using a real database
-                // context.Database.Migrate();
+                catalogContext.Database.Migrate();
 
                 if (!catalogContext.CatalogBrands.Any())
                 {

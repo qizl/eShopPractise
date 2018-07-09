@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Web.Controllers;
+﻿using EnjoyCodes.eShopOnWeb.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EnjoyCodes.eShopOnWeb.Web.Extensions
 {

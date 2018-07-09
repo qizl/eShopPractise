@@ -7,6 +7,8 @@ using EnjoyCodes.eShopOnWeb.Infrastructure.Data;
 using EnjoyCodes.eShopOnWeb.Infrastructure.Identity;
 using EnjoyCodes.eShopOnWeb.Infrastructure.Logging;
 using EnjoyCodes.eShopOnWeb.Infrastructure.Services;
+using EnjoyCodes.eShopOnWeb.Web.Interfaces;
+using EnjoyCodes.eShopOnWeb.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -48,12 +50,12 @@ namespace EnjoyCodes.eShopOnWeb.Web
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
-            //services.AddScoped<ICatalogService, CachedCatalogService>();
+            services.AddScoped<ICatalogService, CachedCatalogService>();
             services.AddScoped<IBasketService, BasketService>();
-            //services.AddScoped<IBasketViewModelService, BasketViewModelService>();
+            services.AddScoped<IBasketViewModelService, BasketViewModelService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-            //services.AddScoped<CatalogService>();
+            services.AddScoped<CatalogService>();
             services.Configure<CatalogSettings>(Configuration);
             services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
 

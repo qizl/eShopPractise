@@ -1,19 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using EnjoyCodes.eShopOnWeb.Web.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using EnjoyCodes.eShopOnWeb.Web.Models;
 
 namespace EnjoyCodes.eShopOnWeb.Web.Controllers
 {
     [Route("")]
     public class CatalogController : Controller
     {
-        public IActionResult Index()
+        private readonly ICatalogService _catalogService;
+
+        public CatalogController(ICatalogService catalogService) => this._catalogService = catalogService;
+
+        [HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> Index(int? brandFilterApplied, int? typesFilterApplied, int? page)
         {
-            return View();
+            var itemsPage = 10;
+            var catalogModel = await this._catalogService.GetCatalogItems(page ?? 0, itemsPage, brandFilterApplied, typesFilterApplied);
+            return View(catalogModel);
         }
+
+        [HttpGet("Error")]
+        public IActionResult Error() => View();
     }
 }

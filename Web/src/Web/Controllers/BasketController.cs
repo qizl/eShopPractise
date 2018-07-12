@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using EnjoyCodes.eShopOnWeb.ApplicationCore.Entities.OrderAggregate;
+﻿using EnjoyCodes.eShopOnWeb.ApplicationCore.Entities.OrderAggregate;
 using EnjoyCodes.eShopOnWeb.ApplicationCore.Interfaces;
 using EnjoyCodes.eShopOnWeb.Infrastructure.Identity;
 using EnjoyCodes.eShopOnWeb.Web.Interfaces;
@@ -10,6 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EnjoyCodes.eShopOnWeb.Web.Controllers
 {

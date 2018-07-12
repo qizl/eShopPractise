@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using EnjoyCodes.eShopOnWeb.ApplicationCore;
+﻿using EnjoyCodes.eShopOnWeb.ApplicationCore;
 using EnjoyCodes.eShopOnWeb.ApplicationCore.Interfaces;
 using EnjoyCodes.eShopOnWeb.ApplicationCore.Services;
 using EnjoyCodes.eShopOnWeb.Infrastructure.Data;
@@ -17,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Text;
 
 namespace EnjoyCodes.eShopOnWeb.Web
 {

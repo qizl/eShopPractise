@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using EnjoyCodes.eShopOnWeb.ApplicationCore.Interfaces;
+﻿using EnjoyCodes.eShopOnWeb.ApplicationCore.Interfaces;
 using EnjoyCodes.eShopOnWeb.Infrastructure.Identity;
 using EnjoyCodes.eShopOnWeb.Web.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace EnjoyCodes.eShopOnWeb.Web.Controllers
 {

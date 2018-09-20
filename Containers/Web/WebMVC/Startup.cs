@@ -101,7 +101,6 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC
 
     static class ServiceCollectionExtensions
     {
-
         public static IServiceCollection AddAppInsight(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddApplicationInsightsTelemetry(configuration);
@@ -267,8 +266,8 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC
               .HandleTransientHttpError()
               .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
               .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
-
         }
+
         static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
         {
             return HttpPolicyExtensions

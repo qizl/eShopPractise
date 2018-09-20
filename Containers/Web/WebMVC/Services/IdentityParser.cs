@@ -16,7 +16,6 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Services
             {
                 return new ApplicationUser
                 {
-
                     CardHolderName = claims.Claims.FirstOrDefault(x => x.Type == "card_holder")?.Value ?? "",
                     CardNumber = claims.Claims.FirstOrDefault(x => x.Type == "card_number")?.Value ?? "",
                     Expiration = claims.Claims.FirstOrDefault(x => x.Type == "card_expiration")?.Value ?? "",

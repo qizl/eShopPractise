@@ -19,8 +19,7 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Infrastructure
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var authorizationHeader = _httpContextAccesor.HttpContext
-                .Request.Headers["Authorization"];
+            var authorizationHeader = _httpContextAccesor.HttpContext.Request.Headers["Authorization"];
 
             if (!string.IsNullOrEmpty(authorizationHeader))
             {
@@ -41,8 +40,7 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Infrastructure
         {
             const string ACCESS_TOKEN = "access_token";
 
-            return await _httpContextAccesor.HttpContext
-                .GetTokenAsync(ACCESS_TOKEN);
+            return await _httpContextAccesor.HttpContext.GetTokenAsync(ACCESS_TOKEN);
         }
     }
 }

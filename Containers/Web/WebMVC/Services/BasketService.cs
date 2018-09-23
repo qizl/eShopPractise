@@ -23,7 +23,7 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Services
             _settings = settings;
 
             _basketByPassUrl = $"{_settings.Value.PurchaseUrl}/api/v1/b/basket";
-            _purchaseUrl = $"{_settings.Value.PurchaseUrl}/api/v1";
+            _purchaseUrl = $"{_settings.Value.PurchaseUrl}/api/v1/b/basket";
         }
 
         public async Task<Basket> GetBasket(ApplicationUser user)
@@ -91,20 +91,31 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Services
 
             var responseString = await _apiClient.GetStringAsync(uri);
 
-            var response =  JsonConvert.DeserializeObject<Order>(responseString);
+            var response = JsonConvert.DeserializeObject<Order>(responseString);
 
             return response;
         }
 
-        public async Task AddItemToBasket(ApplicationUser user, int productId)
+        public async Task AddItemToBasket(ApplicationUser user, CatalogItem product)
         {
             var uri = API.Purchase.AddItemToBasket(_purchaseUrl);
 
             var newItem = new
             {
-                CatalogItemId = productId,
-                BasketId = user.Id,
-                Quantity = 1
+                BuyerId = user.Id,
+                Items = new List<object>
+                {
+                    new {
+                        ProductId   = product.Id,
+                        ProductName = product.Name,
+                        UnitPrice   = product.Price,
+                        PictureUrl  = product.PictureUri,
+                        Quantity    = 1
+                    }
+                }
+                //CatalogItemId = productId,
+                //BasketId = user.Id,
+                //Quantity = 1
             };
 
             var basketContent = new StringContent(JsonConvert.SerializeObject(newItem), System.Text.Encoding.UTF8, "application/json");

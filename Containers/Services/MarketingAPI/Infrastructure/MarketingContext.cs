@@ -1,9 +1,9 @@
 ﻿namespace EnjoyCodes.eShopOnContainers.Services.MarketingAPI.Infrastructure
 {
-    using Model;
     using EntityConfigurations;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
+    using Model;
 
     public class MarketingContext : DbContext
     {

@@ -11,5 +11,7 @@ namespace EnjoyCodes.eShopOnContainers.Services.CatalogAPI.Controllers
         {
             return new RedirectResult("~/swagger");
         }
+
+        public IActionResult HealthCheck() => Ok();
     }
 }

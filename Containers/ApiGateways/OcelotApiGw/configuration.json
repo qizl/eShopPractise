@@ -22,7 +22,7 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/{version}/b/{everything}",
-            "UpstreamHttpMethod": [],
+            "UpstreamHttpMethod": [ "GET", "POST", "DELETE" ],
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "IdentityApiKey",
                 "AllowedScopes": []

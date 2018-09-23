@@ -207,7 +207,6 @@ namespace EnjoyCodes.eShopOnContainers.Services.BasketAPI
                });
 
             ConfigureEventBus(app);
-
         }
 
         private void RegisterAppInsights(IServiceCollection services)

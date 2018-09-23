@@ -64,11 +64,7 @@ namespace EnjoyCodes.eShopOnContainers.Services.Ordering.API
             var container = new ContainerBuilder();
             container.Populate(services);
 
-#if QFDEBUG
-            var connectionString = Configuration["QFConnectionString"];
-#else
             var connectionString = Configuration["ConnectionString"];
-#endif
 
             container.RegisterModule(new MediatorModule());
             container.RegisterModule(new ApplicationModule(connectionString));
@@ -180,11 +176,7 @@ namespace EnjoyCodes.eShopOnContainers.Services.Ordering.API
 
         public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
         {
-#if QFDEBUG
-            var connectionString = configuration["QFConnectionString"];
-#else
             var connectionString = configuration["ConnectionString"];
-#endif
 
             services.AddHealthChecks(checks =>
             {
@@ -201,11 +193,7 @@ namespace EnjoyCodes.eShopOnContainers.Services.Ordering.API
 
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-#if QFDEBUG
-            var connectionString = configuration["QFConnectionString"];
-#else
             var connectionString = configuration["ConnectionString"];
-#endif
 
             services.AddEntityFrameworkSqlServer()
                    .AddDbContext<OrderingContext>(options =>

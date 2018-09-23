@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EnjoyCodes.eShopOnContainers.WebMVC.ViewModels
+﻿namespace EnjoyCodes.eShopOnContainers.WebMVC.ViewModels
 {
     public class CatalogItem
     {
@@ -13,6 +11,5 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.ViewModels
         public string CatalogBrand { get; set; }
         public int CatalogTypeId { get; set; }
         public string CatalogType { get; set; }
-
     }
 }

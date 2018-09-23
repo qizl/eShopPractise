@@ -40,7 +40,6 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Controllers
             return View();
         }
 
-        
         [HttpPost]
         public async Task<IActionResult> Index(Dictionary<string, int> quantities, string action)
         {
@@ -69,9 +68,9 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Controllers
                 if (productDetails?.Id != null)
                 {
                     var user = _appUserParser.Parse(HttpContext.User);
-                    await _basketSvc.AddItemToBasket(user, productDetails.Id);
+                    await _basketSvc.AddItemToBasket(user, productDetails);
                 }
-                return RedirectToAction("Index", "Catalog");            
+                return RedirectToAction("Index", "Catalog");
             }
             catch (BrokenCircuitException)
             {

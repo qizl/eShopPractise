@@ -105,6 +105,8 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Services
 
         public Order MapUserInfoIntoOrder(ApplicationUser user, Order order)
         {
+            order.Buyer = user.Name;
+
             order.City = user.City;
             order.Street = user.Street;
             order.State = user.State;

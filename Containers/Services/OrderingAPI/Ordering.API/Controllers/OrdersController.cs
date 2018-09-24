@@ -104,7 +104,7 @@ namespace Ordering.API.Controllers
 
         [Route("draft")]
         [HttpPost]
-        public async Task<IActionResult> GetOrderDraftFromBasketData([FromBody] CreateOrderDraftCommand createOrderDraftCommand)
+        public async Task<IActionResult> GetOrderDraftFromBasketData([FromBody]CreateOrderDraftCommand createOrderDraftCommand)
         {
             var draft = await _mediator.Send(createOrderDraftCommand);
             return Ok(draft);

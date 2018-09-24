@@ -3,6 +3,7 @@ using EnjoyCodes.eShopOnContainers.WebMVC.Models;
 using EnjoyCodes.eShopOnContainers.WebMVC.ViewModels;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -66,12 +67,12 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Services
 
             var basketUpdate = new
             {
-                BasketId = user.Id,
+                BuyerId = user.Id,
                 Updates = quantities.Select(kvp => new
                 {
                     BasketItemId = kvp.Key,
                     NewQty = kvp.Value
-                }).ToArray()
+                })
             };
 
             var basketContent = new StringContent(JsonConvert.SerializeObject(basketUpdate), System.Text.Encoding.UTF8, "application/json");
@@ -87,13 +88,34 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Services
 
         public async Task<Order> GetOrderDraft(string basketId)
         {
-            var uri = API.Purchase.GetOrderDraft(_purchaseUrl, basketId);
+            //var uri = API.Purchase.GetOrderDraft(_purchaseUrl, basketId);
+
+            //var responseString = await _apiClient.GetStringAsync(uri);
+
+            //var response = JsonConvert.DeserializeObject<Order>(responseString);
+
+            //return response;
+
+            var uri = API.Basket.GetBasket(_basketByPassUrl, basketId);
 
             var responseString = await _apiClient.GetStringAsync(uri);
 
-            var response = JsonConvert.DeserializeObject<Order>(responseString);
+            var basket = string.IsNullOrEmpty(responseString) ?
+                new Basket() { BuyerId = basketId } :
+                JsonConvert.DeserializeObject<Basket>(responseString);
 
-            return response;
+            var order = new Order();
+            order.Total = basket.Items.Sum(m => m.UnitPrice * m.Quantity);
+            order.OrderItems.AddRange(from i in basket.Items
+                                      select new OrderItem()
+                                      {
+                                          ProductId = Convert.ToInt32(i.ProductId),
+                                          ProductName = i.ProductName,
+                                          UnitPrice = i.UnitPrice,
+                                          Units = i.Quantity,
+                                          PictureUrl = i.PictureUrl
+                                      });
+            return order;
         }
 
         public async Task AddItemToBasket(ApplicationUser user, CatalogItem product)

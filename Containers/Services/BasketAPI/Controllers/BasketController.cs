@@ -5,6 +5,7 @@ using EnjoyCodes.eShopOnContainers.Services.BasketAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -46,7 +47,40 @@ namespace EnjoyCodes.eShopOnContainers.Services.BasketAPI.Controllers
         [ProducesResponseType(typeof(CustomerBasket), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Post([FromBody]CustomerBasket value)
         {
-            var basket = await _repository.UpdateBasketAsync(value);
+            var basket = await this._repository.GetBasketAsync(value.BuyerId);
+            if (basket != null)
+            {
+                foreach (var item in value.Items)
+                {
+                    var oldItem = basket.Items.FirstOrDefault(m => m.ProductId == item.ProductId);
+                    if (oldItem != null)
+                        oldItem.Quantity++;
+                    else
+                        basket.Items.Add(item);
+                }
+            }
+            else
+            {
+                basket = value;
+            }
+
+            var basket1 = await _repository.UpdateBasketAsync(basket);
+
+            return Ok(basket1);
+        }
+
+        // PUT /value
+        [HttpPut]
+        [ProducesResponseType(typeof(CustomerBasket), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Put([FromBody]UpdateBasket value)
+        {
+            var basket = await this._repository.GetBasketAsync(value.BuyerId);
+            basket.Items.ForEach(m =>
+            {
+                m.Quantity = value.Updates.First(i => i.BasketItemId == m.ProductId).NewQty;
+            });
+
+            var basket1 = await _repository.UpdateBasketAsync(basket);
 
             return Ok(basket);
         }
@@ -58,7 +92,6 @@ namespace EnjoyCodes.eShopOnContainers.Services.BasketAPI.Controllers
         public async Task<IActionResult> Checkout([FromBody]BasketCheckout basketCheckout, [FromHeader(Name = "x-requestid")] string requestId)
         {
             var userId = _identitySvc.GetUserIdentity();
-
 
             basketCheckout.RequestId = (Guid.TryParse(requestId, out Guid guid) && guid != Guid.Empty) ?
                 guid : basketCheckout.RequestId;

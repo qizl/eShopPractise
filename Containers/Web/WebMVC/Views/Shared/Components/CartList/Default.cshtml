@@ -42,7 +42,7 @@
                     <section class="esh-basket-item esh-basket-item--middle col-xs-3">@item.ProductName</section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-2">$ @item.UnitPrice.ToString("N2")</section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-2">
-                        <input type="hidden" name="@("quantities[" + i +"].Key")" value="@item.Id" />
+                        <input type="hidden" name="@("quantities[" + i +"].Key")" value="@item.ProductId" />
                         <input type="number" class="esh-basket-input" min="1" name="@("quantities[" + i +"].Value")" value="@item.Quantity" />
                     </section>
                     <section class="esh-basket-item esh-basket-item--middle esh-basket-item--mark col-xs-2">$ @Math.Round(item.Quantity * item.UnitPrice, 2).ToString("N2")</section>
@@ -75,17 +75,15 @@
             <article class="esh-basket-items row">
                 <section class="esh-basket-item col-xs-7"></section>
                 <section class="esh-basket-item col-xs-2">
-                    <button class="btn esh-basket-checkout" name="name" value="" type="submit">[ Update ]</button>
+                    <button class="btn esh-basket-checkout" name="name" value="[ Update ]" type="submit">[ Update ]</button>
                 </section>
                 <section class="esh-basket-item col-xs-3">
-                    <input type="submit"
-                           class="btn esh-basket-checkout"
-                           value="[ Checkout ]" name="action" />
+                    <input class="btn esh-basket-checkout" name="action" value="[ Checkout ]" type="submit" />
                 </section>
             </article>
         </div>
     }
-    
+
 </div>
 
-    
+

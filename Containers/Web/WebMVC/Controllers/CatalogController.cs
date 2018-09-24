@@ -15,7 +15,7 @@ namespace EnjoyCodes.eShopOnContainers.WebMVC.Controllers
 
         public async Task<IActionResult> Index(int? BrandFilterApplied, int? TypesFilterApplied, int? page, [FromQuery]string errorMsg)
         {
-            var itemsPage = 10;
+            var itemsPage = 6;
             var catalog = await _catalogSvc.GetCatalogItems(page ?? 0, itemsPage, BrandFilterApplied, TypesFilterApplied);
             var vm = new IndexViewModel()
             {

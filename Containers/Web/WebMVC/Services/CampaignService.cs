@@ -17,9 +17,9 @@
 
         public CampaignService(IOptions<AppSettings> settings, HttpClient httpClient, ILogger<CampaignService> logger)
         {
-            _settings = settings;
+            _settings   = settings;
             _httpClient = httpClient;
-            _logger = logger;
+            _logger     = logger;
 
             _remoteServiceBaseUrl = $"{_settings.Value.PurchaseUrl}/api/v1/m/campaigns/";
         }
